@@ -1,6 +1,6 @@
 # next-scroll-restore
 
-WIP and testing.
+WIP and under testing.
 
 This restores last scroll ammount on history.pushState and history.back
 
@@ -9,7 +9,6 @@ Just wrapped with scroll-behavior. Inspired by react-router-scroll.
 ## Example
 
 ```js
-import next
 import Router from 'next/router'
 import applyScrollRestore from 'next-scroll-restore'
 
