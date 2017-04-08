@@ -6,6 +6,8 @@ This restores last scroll ammount on history.pushState and history.back
 
 Just wrapped with scroll-behavior. Inspired by react-router-scroll.
 
+![](https://i.gyazo.com/077bd6bb6368d82971bed4c9bb4c5174.gif)
+
 ## Example
 
 ```js
