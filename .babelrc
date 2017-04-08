@@ -1,0 +1,11 @@
+{
+  "presets": [
+    "next/babel",
+    ["env", {
+      "targets": {
+        "chrome": 56
+      }
+    }],
+    "@mizchi/babel-preset"
+  ]
+}

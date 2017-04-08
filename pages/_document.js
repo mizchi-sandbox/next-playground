@@ -8,6 +8,7 @@ const wait = (ms) => new Promise(resolve => setTimeout(resolve, ms))
 
 export default class MyDocument extends Document {
   static async getInitialProps ({ renderPage }) {
+    console.log('getInitialProps on MyDocument')
     const {html, head} = renderPage()
     const styles = flush()
     // await wait(150)
@@ -28,8 +29,3 @@ export default class MyDocument extends Document {
     )
   }
 }
-
-// Router.onRouteChangeStart = (url) => {
-//   console.log('aaa', url)
-//   return true
-// }

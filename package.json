@@ -1,7 +1,6 @@
 {
-  "name": "play-next2",
-  "version": "1.0.0",
-  "main": "index.js",
+  "name": "@mizchi/next-playground",
+  "private": true,
   "scripts": {
     "dev": "next",
     "build": "next build",
@@ -9,9 +8,16 @@
   },
   "license": "MIT",
   "dependencies": {
+    "history": "^4.6.1",
+    "lodash.range": "^3.2.0",
     "next": "^2.0.1",
     "next-routes": "^1.0.24",
     "react": "^15.4.2",
-    "react-dom": "^15.4.2"
+    "react-dom": "^15.4.2",
+    "scroll-behavior": "^0.9.3"
+  },
+  "devDependencies": {
+    "@mizchi/babel-preset": "^1.0.1",
+    "babel-preset-env": "^1.3.3"
   }
 }

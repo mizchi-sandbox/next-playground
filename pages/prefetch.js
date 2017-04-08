@@ -1,11 +1,11 @@
 import Link from 'next/link'
 import Header from '../components/Header'
 
-export default class Index extends React.Component {
+export default class Prefetch extends React.Component {
   render() {
     return <div>
       <Header/>
-      Welcome to next.js! {this.props.stargazers_count}
+      <Link href='/async' prefetch><a>To Async with prefetch</a></Link>
     </div>
   }
 }
