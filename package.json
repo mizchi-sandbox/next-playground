@@ -4,7 +4,7 @@
   "scripts": {
     "dev": "next",
     "build": "next build",
-    "start": "next start"
+    "start": "babel-node server.js"
   },
   "license": "MIT",
   "dependencies": {
