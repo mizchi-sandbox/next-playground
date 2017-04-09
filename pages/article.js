@@ -1,11 +1,20 @@
 import Header from '../components/Header'
 import { Link } from '../routes'
 import 'isomorphic-fetch'
+import axios from 'axios'
 
 export default class Article extends React.Component {
-  static async getInitialProps({query, jsonPageRes}) {
+  static async getInitialProps({query, req}) {
     console.time("Fetching article")
-    const res = await fetch(`http://localhost:3000/api/article/${query.id}`)
+    let host = null
+    if (req) {
+      // Server side rendering
+      host = req.protocol + '://' + req.get('host')
+    } else {
+      // Client side rendering
+      host = window.location.protocol + '//' + window.location.hostname + (window.location.port ? ':' + window.location.port: '')
+    }
+    const res = await fetch(`${host}/api/article/${query.id}`)
     console.timeEnd("Fetching article")
     return await res.json()
   }
