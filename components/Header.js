@@ -16,6 +16,8 @@ export default function Header () {
    <Link route='scroll'><a>Scroll</a></Link>
    /
    <Link route='article' params={{id: 0}}><a>Arcticle:0</a></Link>
+   /
+   <Link route='redux'><a>Redux</a></Link>
    <hr/>
   </header>
 }
