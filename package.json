@@ -12,8 +12,10 @@
     "history": "^4.6.1",
     "isomorphic-fetch": "^2.2.1",
     "lodash.range": "^3.2.0",
+    "lru-cache": "^4.0.2",
     "next": "^2.0.1",
     "next-routes": "^1.0.24",
+    "object-hash": "^1.1.7",
     "react": "^15.4.2",
     "react-dom": "^15.4.2",
     "scroll-behavior": "^0.9.3"

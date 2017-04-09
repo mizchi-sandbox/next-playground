@@ -7,23 +7,40 @@ import wait from './util/wait'
 const app = next({dev: process.env.NODE_ENV !== 'production'})
 const handler = routes.getRequestHandler(app)
 
-const apiCache = new Map()
+import hash from 'object-hash'
+import LRU from 'lru-cache'
+import wrapFuncWithCache from './util/wrapFuncWithCache'
 
-async function fetchAricle(id) {
-  if (apiCache.has(id)) {
-    console.log("fetchAricle: Use cache", id)
-    return apiCache.get(id)
-  }
+const fetchArticle = wrapFuncWithCache(async id => {
   // simulate server wait
   await wait(1000)
-  const article = {
+  return {
     id,
     body: `Generated: ${Date.now()}`
   }
-  console.log("fetchAricle: Set cache", id)
-  apiCache.set(id, article)
-  return article
-}
+}, {
+  createCacheKey(id) {
+    // Use lastUpdatedAt in real world
+    return id
+  },
+  storage: new LRU({
+    max: 500,
+    maxAge: 1000 * 60 * 60
+  })
+})
+
+const renderHTML = wrapFuncWithCache(async ({render}) => {
+  return render()
+}, {
+  createCacheKey({params}) {
+    // Use lastUpdatedAt in real world
+    return hash(params)
+  },
+  storage: new LRU({
+    max: 500,
+    maxAge: 1000 * 60 * 60
+  })
+})
 
 ;(async () => {
   await app.prepare()
@@ -31,16 +48,16 @@ async function fetchAricle(id) {
 
   // Cache article by id
   server.get('/api/article/:id', async (req, res) => {
-    // const queryParams = { id: req.params.id }
-    const article = await fetchAricle(req.params.id)
-    res.json(article)
+    const params = await fetchArticle(req.params.id)
+    res.json(params)
   })
-
-  // Cache article by id
   server.get('/article/:id', async (req, res) => {
-    // const queryParams = { id: req.params.id }
-    const params = await fetchAricle(req.params.id)
-    await renderAndCache(req, res, 'article', params)
+    const params = await fetchArticle(req.params.id)
+    const html = await renderHTML({
+      params,
+      render: () => app.renderToHTML(req, res, 'article', params)
+    })
+    res.send(html)
   })
 
   server.get('*', (req, res) => {
@@ -52,31 +69,3 @@ async function fetchAricle(id) {
     console.log('> Ready on http://localhost:3000')
   })
 })()
-
-const ssrCache = new Map()
-
-function getCacheKey (req) {
-  return `${req.url}`
-}
-
-async function renderAndCache (req, res, pagePath, queryParams) {
-  const key = getCacheKey(req)
-
-  // If we have a page in the cache, let's serve it
-  if (ssrCache.has(key)) {
-    console.log(`CACHE HIT: ${key}`)
-    res.send(ssrCache.get(key))
-    return
-  }
-
-  try {
-    // If not let's render the page into HTML
-    const html = await app.renderToHTML(req, res, pagePath, queryParams)
-    // Let's cache this page
-    console.log(`CACHE MISS: ${key}`)
-    ssrCache.set(key, html)
-    res.send(html)
-  } catch (e) {
-    app.renderError(err, req, res, pagePath, queryParams)
-  }
-}
