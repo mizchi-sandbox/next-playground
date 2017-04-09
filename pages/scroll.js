@@ -8,7 +8,7 @@ export default class Scroll extends React.Component {
       <Header/>
       <ul>
         {
-          range(100).map(i => {
+          range(50).map(i => {
             return <li key={i}>
               item: {i}
             </li>

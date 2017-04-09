@@ -1,6 +1,4 @@
-import Link from 'next/link'
-import Router from 'next/router'
-// import createScrollBehavior from '../util/scrollBehavior'
+import { Link, Router } from '../routes'
 import applyScrollRestore from '../util/scrollBehavior'
 
 applyScrollRestore({addTransitionHook: Router.onRouteChangeComplete})
@@ -9,13 +7,15 @@ export default function Header () {
   return <header>
    <Link href='/'><a>Index</a></Link>
    /
-   <Link href='/about'><a>About</a></Link>
+   <Link route='about'><a>About</a></Link>
    /
-   <Link href='/prefetch'><a>Prefetch</a></Link>
+   <Link route='prefetch'><a>Prefetch</a></Link>
    /
-   <Link href='/async'><a>Async</a></Link>
+   <Link route='async'><a>Async</a></Link>
    /
-   <Link href='/scroll'><a>Scroll</a></Link>
+   <Link route='scroll'><a>Scroll</a></Link>
+   /
+   <Link route='article' params={{id: 0}}><a>Arcticle:0</a></Link>
    <hr/>
   </header>
 }
