@@ -2,7 +2,6 @@
   "name": "@mizchi/next-playground",
   "private": true,
   "scripts": {
-    "dev": "next",
     "build": "next build",
     "start": "NODE_ENV=production babel-node server.js",
     "start:dev": "babel-node server.js"
@@ -22,11 +21,15 @@
     "next-redux-wrapper": "^1.0.0",
     "next-routes": "^1.0.24",
     "object-hash": "^1.1.7",
-    "react": "^15.4.2",
+    "react": "^15.5.4",
     "react-dom": "^15.4.2",
     "react-redux": "^5.0.4",
     "redux": "^3.6.0",
+    "redux-actions": "^2.0.1",
     "redux-logger": "^3.0.1",
     "scroll-behavior": "^0.9.3"
+  },
+  "devDependencies": {
+    "flow-bin": "^0.44.0"
   }
 }
