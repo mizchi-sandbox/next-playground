@@ -887,7 +887,7 @@ babel-register@^6.24.0, babel-register@^6.24.1:
     mkdirp "^0.5.1"
     source-map-support "^0.4.2"
 
-babel-runtime@6.23.0, babel-runtime@^6.18.0, babel-runtime@^6.2.0, babel-runtime@^6.20.0, babel-runtime@^6.22.0:
+babel-runtime@6.23.0, babel-runtime@^6.18.0, babel-runtime@^6.2.0, babel-runtime@^6.20.0, babel-runtime@^6.22.0, babel-runtime@^6.23.0:
   version "6.23.0"
   resolved "https://registry.yarnpkg.com/babel-runtime/-/babel-runtime-6.23.0.tgz#0a9489f144de70efb3ce4300accdb329e2fc543b"
   dependencies:
@@ -3119,6 +3119,13 @@ rimraf@^2.2.8, rimraf@~2.4.0:
 ripemd160@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/ripemd160/-/ripemd160-1.0.1.tgz#93a4bbd4942bc574b69a8fa57c71de10ecca7d6e"
+
+route-cache-strategy@^0.2.1:
+  version "0.2.1"
+  resolved "https://registry.yarnpkg.com/route-cache-strategy/-/route-cache-strategy-0.2.1.tgz#22800f6bb62925a656725bbe13a423a718870b3b"
+  dependencies:
+    babel-runtime "^6.23.0"
+    path-to-regexp "^1.7.0"
 
 safe-buffer@^5.0.1:
   version "5.0.1"

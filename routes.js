@@ -1,10 +1,8 @@
 const nextRoutes = require('next-routes')
-const routes = module.exports = nextRoutes()
+const routes = (module.exports = nextRoutes())
+export const Link = routes.Link
+export const Router = routes.Router
 
 routes.add('index', '/index')
-routes.add('about', '/about')
-routes.add('async', '/async')
-routes.add('prefetch', '/prefetch')
 routes.add('article', '/article/:id')
-routes.add('scroll', '/scroll')
 routes.add('redux', '/redux')
